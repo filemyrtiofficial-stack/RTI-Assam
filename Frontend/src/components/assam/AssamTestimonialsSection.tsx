@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BikramSaikiaImage from '../../assets/images/Bikram Saikia.webp';
 import MadhurimaDasImage from '../../assets/images/Madhurima Das.webp';
 import ManjitBaruahImage from '../../assets/images/Manjit Baruah.webp';

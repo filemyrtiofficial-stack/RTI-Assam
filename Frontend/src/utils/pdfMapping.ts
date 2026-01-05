@@ -291,7 +291,6 @@ const departmentToPDFMap: PDFMapping = {
   'RTI Assam Horticulture Department': 'RTI-Templates/RTI_Assam_Horticulture_Department.pdf',
   'RTI Assam Animal Husbandry & Veterinary Services Department': 'RTI-Templates/RTI_Assam_Animal_Husbandry_and_Veterinary_Department.pdf',
   'RTI Assam Co-operation Department': 'RTI-Templates/RTI_Assam_Co-operation_Department.pdf',
-  'RTI Assam Rural Development & Panchayat Raj Department': 'RTI-Templates/RTI_Assam_Panchayat_and_Rural_Development_Department.pdf',
 
   // RTI Assam Social Welfare
   'RTI Assam Social Welfare Department': 'RTI-Templates/RTI_Assam_Social_Welfare_Department.pdf',

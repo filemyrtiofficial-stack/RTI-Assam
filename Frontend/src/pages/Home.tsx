@@ -17,11 +17,9 @@ const AssamTestimonialsSection = lazy(() => import('../components/assam/AssamTes
 const KarnatakaWhySection = lazy(() => import('../components/assam/AssamWhySection').then(m => ({ default: m.KarnatakaWhySection })));
 const KarnatakaClientsSection = lazy(() => import('../components/assam/AssamClientsSection').then(m => ({ default: m.KarnatakaClientsSection })));
 const KarnatakaRTIPortalSection = lazy(() => import('../components/assam/AssamRTIPortalSection').then(m => ({ default: m.KarnatakaRTIPortalSection })));
-const KarnatakaFeaturedSection = lazy(() => import('../components/assam/AssamFeaturedSection').then(m => ({ default: m.KarnatakaFeaturedSection })));
 const KarnatakaGuidesSection = lazy(() => import('../components/assam/AssamGuidesSection').then(m => ({ default: m.KarnatakaGuidesSection })));
 const KarnatakaDepartmentsSection = lazy(() => import('../components/assam/AssamDepartmentsSection').then(m => ({ default: m.KarnatakaDepartmentsSection })));
 const KarnatakaFinalCTASection = lazy(() => import('../components/assam/AssamFinalCTASection').then(m => ({ default: m.KarnatakaFinalCTASection })));
-const KarnatakaConsultationCTA = lazy(() => import('../components/assam/AssamConsultationCTA').then(m => ({ default: m.KarnatakaConsultationCTA })));
 const KarnatakaFAQ = lazy(() => import('../components/assam/AssamFAQ').then(m => ({ default: m.KarnatakaFAQ })));
 
 export const Home: React.FC = () => {

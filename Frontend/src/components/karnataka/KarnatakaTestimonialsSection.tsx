@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export const KarnatakaTestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
