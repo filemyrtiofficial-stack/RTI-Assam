@@ -61,6 +61,9 @@ export const KarnatakaFAQ: React.FC = () => {
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
+                aria-label={openIndex === index ? `Hide answer for: ${faq.q}` : `Show answer for: ${faq.q}`}
               >
                 <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
                 <svg
@@ -75,7 +78,7 @@ export const KarnatakaFAQ: React.FC = () => {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4 pt-2 border-t border-gray-200">
+                <div id={`faq-answer-${index}`} className="px-6 pb-4 pt-2 border-t border-gray-200" role="region" aria-live="polite">
                   <p className="text-gray-700 leading-relaxed">{faq.a}</p>
                 </div>
               )}

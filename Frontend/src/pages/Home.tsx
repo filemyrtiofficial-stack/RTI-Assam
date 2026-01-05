@@ -2,6 +2,8 @@ import React, { lazy, Suspense, useDeferredValue } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useStateData } from '../hooks/useStateData';
 import { LazyChatbot } from '../components/common/LazyChatbot';
+import { generateFAQStructuredData } from '../utils/seo';
+import { FAQ } from '../types/services';
 
 // Lazy load Navbar and Footer for better initial load
 const Navbar = lazy(() => import('../components/common/Navbar').then(m => ({ default: m.Navbar })));
@@ -122,6 +124,36 @@ export const Home: React.FC = () => {
     ]
   };
 
+  // FAQ Structured Data for Assam
+  const assamFAQs: FAQ[] = [
+    {
+      q: 'What is RTI and how does it work in Assam?',
+      a: 'RTI (Right to Information) is a fundamental right under the RTI Act 2005 that allows citizens to seek information from public authorities. In Assam, you can file RTI applications to any government department, including Secretariat, Revenue, Police, Education, Health, and all other state departments. The Assam Information Commission oversees RTI implementation in the state.',
+    },
+    {
+      q: 'What information can I request through RTI in Assam?',
+      a: 'You can request any information held by public authorities in Assam, including government orders, circulars, policy decisions, budget allocations, project details, employee information, land records, certificates, licenses, and any other documents or data maintained by government departments. However, information exempted under Section 8 of the RTI Act cannot be disclosed.',
+    },
+    {
+      q: 'How do I know which department to file RTI with?',
+      a: 'Our expert team will help you identify the correct department and Public Information Officer (PIO) based on your query. We maintain an extensive database of all Assam government departments and their jurisdictions. Simply tell us what information you need, and we\'ll ensure your application reaches the right authority.',
+    },
+    {
+      q: 'Can I file RTI anonymously in Assam?',
+      a: 'No, you cannot file RTI applications anonymously. The RTI Act requires applicants to provide their name, address, and contact details. However, your personal information is kept confidential and is not disclosed in the response. We ensure your privacy is protected throughout the process.',
+    },
+    {
+      q: 'What happens if my RTI application is rejected or not answered?',
+      a: 'If your RTI application is rejected or not answered within the prescribed time, you can file a First Appeal with the First Appellate Authority (FAA) within 30 days. If still unsatisfied, you can file a Second Appeal with the Assam Information Commission within 90 days. We assist you with drafting and filing appeals at no extra charge.',
+    },
+    {
+      q: 'Do I need to visit government offices to file RTI in Assam?',
+      a: 'No, with FileMyRTI you can file RTI applications completely online without visiting any government office. We handle all the paperwork, drafting, submission via registered post, and tracking. You\'ll receive all updates, responses, and documents via email. This saves your time and effort significantly.',
+    },
+  ];
+
+  const faqStructuredData = generateFAQStructuredData(assamFAQs);
+
   return (
     <>
       <Helmet>
@@ -156,6 +188,11 @@ export const Home: React.FC = () => {
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbStructuredData)}
         </script>
+        {faqStructuredData && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqStructuredData)}
+          </script>
+        )}
       </Helmet>
       <Suspense fallback={<div className="h-12 bg-white sticky top-0 z-[100]" />}>
         <Navbar />
