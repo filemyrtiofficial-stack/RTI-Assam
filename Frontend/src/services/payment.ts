@@ -79,7 +79,7 @@ export const initializePayment = async (
       throw new Error('Razorpay SDK not loaded');
     }
 
-    const razorpayOptions: RazorpayOptions = {
+    const razorpayOptions: any = {
       ...options,
       handler: async (response: RazorpayResponse) => {
         try {
@@ -96,6 +96,16 @@ export const initializePayment = async (
           }
         }
       }
+    };
+
+    // Add error handler for Razorpay payment errors
+    razorpayOptions.handler_error = (error: any) => {
+      console.error('Razorpay payment error:', error);
+      const errorMessage = error?.error?.description || error?.description || 'Invalid order ID. Please ensure the backend is running and configured correctly.';
+      if (onDismiss) {
+        onDismiss();
+      }
+      throw new Error(errorMessage);
     };
 
     const razorpay = new window.Razorpay(razorpayOptions);

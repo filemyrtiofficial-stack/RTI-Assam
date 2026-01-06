@@ -102,12 +102,29 @@ const apiRequest = async <T>(
   } catch (error) {
     // Handle network errors, timeouts, etc.
     if (error instanceof TypeError && error.message.includes('fetch')) {
-      throw new APIError('Network error. Please check your connection and try again.', 0);
+      // Check if it's a connection refused error (backend not running)
+      const isLocalhost = endpoint.includes('localhost') || endpoint.includes('127.0.0.1');
+      let errorMsg = 'Network error. Please check your connection and try again.';
+      
+      if (isLocalhost) {
+        errorMsg = 'Backend server is not running. Please start the backend server on port 5000 and try again.';
+      } else {
+        // Check for CORS or connection issues
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'production API';
+        errorMsg = `Cannot connect to backend API (${apiUrl}). This could be due to:\n1. CORS restrictions (backend may not allow localhost:3000)\n2. Backend server is down\n3. Network connectivity issues\n\nPlease check the backend configuration or restart your dev server if you just updated .env.local`;
+      }
+      throw new APIError(errorMsg, 0);
     }
     if (error instanceof DOMException && error.name === 'AbortError') {
       throw new APIError('Request timeout. Please try again.', 408);
     }
-    throw error;
+    // Re-throw APIError as-is
+    if (error instanceof APIError) {
+      throw error;
+    }
+    // Wrap other errors
+    const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+    throw new APIError(errorMessage, 0);
   }
 };
 
